@@ -60,7 +60,7 @@ export const UpdateUser = (info) => {
 
   const updates = {};
 
-  updates["user/" + info.id] = info;
+  updates["users/" + info.id] = info;
 
   return update(ref(db), updates);
 };
