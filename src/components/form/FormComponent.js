@@ -14,15 +14,15 @@ import {
 import { AccountCircle } from "@mui/icons-material";
 import PhoneEnabledIcon from "@mui/icons-material/PhoneEnabled";
 
-const FormComponent = ({info,setInfo,handleSubmit,isAdd}) => {
-  const handleChange=(e)=>{
+const FormComponent = ({ info, setInfo, handleSubmit, isAdd }) => {
+  const handleChange = (e) => {
     e.preventDefault();
     // const name=e.target.name;
-    // const value=e.target.value; 
-    const {name,value}=e.target;
-   setInfo({...info,[name]:value})
-   console.log(info)
-  }
+    // const value=e.target.value;
+    const { name, value } = e.target;
+    setInfo({ ...info, [name]: value });
+    console.log(info);
+  };
   return (
     <Grid
       textAlign="center"
@@ -33,12 +33,12 @@ const FormComponent = ({info,setInfo,handleSubmit,isAdd}) => {
       <p className="contact-header">
         <div>
           <a
-            href="https://clarusway.com/"
+            href="https://github.com/bbluechip"
             className="design"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <code>{"<Clarusway/> "}</code>
+            <code>{"<bbluechip🎫/> "}</code>
           </a>
         </div>
         <span className="design header">design</span>
@@ -91,7 +91,7 @@ const FormComponent = ({info,setInfo,handleSubmit,isAdd}) => {
               </Select>
             </FormControl>
             <Button variant="contained" type="submit" value="Submit">
-            {isAdd}
+              {isAdd}
             </Button>
           </Stack>
         </form>

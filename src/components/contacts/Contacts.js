@@ -8,11 +8,11 @@ import {
   TableBody,
   Paper,
 } from "@mui/material";
-import { useFetch,DeleteUser } from "../../utils/functions";
+import { useFetch, DeleteUser } from "../../utils/functions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 
-const Contacts = ({editUser}) => {
+const Contacts = ({ editUser }) => {
   const { isLoading, contactList } = useFetch();
   return (
     <div>
@@ -30,44 +30,51 @@ const Contacts = ({editUser}) => {
           </TableHead>
 
           <TableBody>
-            {
-              isLoading ? (
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell colSpan={5} align="center">
-                    Loading
+            {isLoading ? (
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell colSpan={5} align="center">
+                  Loading
+                </TableCell>
+              </TableRow>
+            ) : contactList?.lenght === 0 ? (
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell colSpan={5} align="center">
+                  No Result Found
+                </TableCell>
+              </TableRow>
+            ) : (
+              contactList?.map((item, index) => (
+                <TableRow>
+                  <TableCell align="center">{item.username} </TableCell>
+                  <TableCell align="center">{item.phoneNumber} </TableCell>
+                  <TableCell align="center">{item.gender} </TableCell>
+                  <TableCell align="center" onClick={() => DeleteUser(item.id)}>
+                    <DeleteIcon
+                      sx={{ "&:hover": { color: "tomato" }, cursor: "pointer" }}
+                    />
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    onClick={() =>
+                      editUser(
+                        item.id,
+                        item.username,
+                        item.phoneNumber,
+                        item.gender
+                      )
+                    }
+                  >
+                    <EditIcon
+                      sx={{ "&:hover": { color: "tomato" }, cursor: "pointer" }}
+                    />
                   </TableCell>
                 </TableRow>
-              ) : contactList?.lenght === 0 ? (
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell colSpan={5} align="center">
-                    No Result Found
-                  </TableCell>
-                </TableRow>
-              ) : (
-                contactList?.map((item, index) => (
-                  <TableRow>
-                    <TableCell align="center">{item.username} </TableCell>
-                    <TableCell align="center">{item.phoneNumber} </TableCell>
-                    <TableCell align="center">{item.gender} </TableCell>
-                    <TableCell align="center" onClick={()=>DeleteUser(item.id)}>
-                      <DeleteIcon />
-                    </TableCell>
-                    <TableCell align="center" onClick={()=>editUser(
-                      item.id,
-                      item.username,
-                      item.phoneNumber, 
-                      item.gender
-                    )}>
-                      <EditIcon />
-                    </TableCell>
-                  </TableRow>
-                ))
-              )
-            }
+              ))
+            )}
           </TableBody>
         </Table>
       </TableContainer>
